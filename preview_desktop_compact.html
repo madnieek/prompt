@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Influencer Prompt Builder</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    padding:16px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    color:#60a5fa;
+    margin-bottom:24px;
+    font-size:22px;
+}
+
+.card{
+    background:#1e293b;
+    padding:12px;
+    border-radius:14px;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.card h2{
+    color:#38bdf8;
+    margin-bottom:16px;
+    font-size:22px;
+}
+
+.version{
+    background:#0f172a;
+    border:1px solid #334155;
+    border-radius:12px;
+    padding:10px;
+    margin-bottom:16px;
+}
+
+.version h3{
+    color:#facc15;
+    margin-bottom:15px;
+}
+
+select{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:12px;
+    margin-bottom:15px;
+    background:#020617;
+    color:white;
+    font-size:14px;
+}
+
+textarea{
+    width:100%;
+    height:220px;
+    background:#020617;
+    color:white;
+    border:none;
+    border-radius:14px;
+    padding:12px;
+    resize:vertical;
+    line-height:1.5;
+    margin-top:15px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:12px;
+    background:#3b82f6;
+    color:white;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#2563eb;
+}
+
+.copy{
+    background:#10b981;
+}
+
+.copy:hover{
+    background:#059669;
+}
+
+.note{
+    background:#172554;
+    padding:12px;
+    border-radius:14px;
+    margin-bottom:20px;
+    color:#cbd5e1;
+    line-height:1.8;
+}
+
+.red{
+    color:#f87171;
+    font-weight:bold;
+}
+
+
+@media (min-width: 992px){
+    .card{
+        max-width:900px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    textarea{
+        height:180px;
+    }
+}
+
+
+.container{
+    max-width:900px !important;
+    width:100%;
+    margin:0 auto;
+}
+
+body{
+    max-width:100vw;
+    overflow-x:hidden;
+}
+
+@media (min-width:1200px){
+    .container{
+        max-width:850px !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Influencer Prompt Builder</h1>
+
+<div class="note">
+✔ Prompt ASLI dari PDF tidak diubah<br>
+✔ Semua VERSI tetap ada<br>
+✔ Hanya bagian fleksibel yang bisa diganti<br>
+✔ Tinggal Generate → Copy Paste
+</div>
+
+<!-- ===================================================== -->
+<!-- AVATAR -->
+<!-- ===================================================== -->
+
+<div class="card">
+
+<h2>1. AVATAR</h2>
+
+<select id="avatarHijab">
+<option value="berjilbab">Berjilbab</option>
+<option value="berhijab">Berhijab</option>
+<option value="">Tanpa Hijab</option>
+</select>
+
+<!-- VERSI 1 -->
+
+<div class="version">
+
+<h3>[VERSI 1]</h3>
+
+<button onclick="generateAvatar1()">
+GENERATE VERSI 1
+</button>
+
+<textarea id="avatar1"></textarea>
+
+<button class="copy" onclick="copyText('avatar1')">
+COPY PROMPT
+</button>
+
+</div>
+
+<!-- VERSI 2 -->
+
+<div class="version">
+
+<h3>[VERSI 2]</h3>
+
+<button onclick="generateAvatar2()">
+GENERATE VERSI 2
+</button>
+
+<textarea id="avatar2"></textarea>
+
+<button class="copy" onclick="copyText('avatar2')">
+COPY PROMPT
+</button>
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- LATAR BELAKANG -->
+<!-- ===================================================== -->
+
+<div class="card">
+
+<h2>2. LATAR BELAKANG</h2>
+
+<select id="backgroundSelect">
+
+<option value="Kamar tidur aesthetic sederhana dengan dinding putih bersih, kasur rapi, cermin besar, dan pencahayaan natural dari jendela pagi hari.">
+Kamar Tidur Aesthetic
+</option>
+
+<option value="Cafe indoor modern dengan nuansa cozy, meja kayu minimalis, pencahayaan warm natural, dan suasana nongkrong ala influencer Indonesia.">
+Cafe Cozy Modern
+</option>
+
+<option value="Ruang tamu rumah minimalis modern dengan sofa cream, tanaman kecil, dan pencahayaan natural dari jendela besar.">
+Ruang Tamu Minimalis
+</option>
+
+<option value="Kamar kost aesthetic wanita dengan interior sederhana namun clean, cermin tinggi, meja makeup kecil, dan lampu warm.">
+Kamar Kost Aesthetic
+</option>
+
+<option value="Dapur rumah modern bersih dengan kitchen set putih minimalis dan pencahayaan natural realistis.">
+Dapur Modern Minimalis
+</option>
+
+<option value="Balkon apartemen sederhana saat sore hari dengan city view dan pencahayaan golden hour natural.">
+Balkon Apartemen
+</option>
+
+<option value="Lorong mall modern Indonesia dengan pencahayaan indoor realistis dan suasana casual shopping.">
+Mall Modern Indonesia
+</option>
+
+<option value="Coffee shop outdoor dengan tanaman hijau, meja kayu aesthetic, dan suasana santai ala selebgram Indonesia.">
+Coffee Shop Outdoor
+</option>
+
+<option value="Kamar perempuan hijabers aesthetic dengan nuansa clean putih dan dekorasi sederhana natural.">
+Kamar Hijabers
+</option>
+
+<option value="Studio foto sederhana dengan background clean abu terang dan soft lighting realistis seperti konten endorsement lokal Indonesia.">
+Studio Endorsement
+</option>
+
+<option value="Ruang kerja content creator wanita dengan meja laptop, lampu meja aesthetic, dan suasana clean modern.">
+Workspace Content Creator
+</option>
+
+<option value="Teras rumah minimalis modern dengan tanaman hijau dan pencahayaan pagi hari yang natural.">
+Teras Rumah Minimalis
+</option>
+
+<option value="Minimarket modern Indonesia dengan suasana realistis seperti konten daily vlog influencer wanita.">
+Minimarket Vibes
+</option>
+
+<option value="Kamar hotel modern sederhana dengan pencahayaan warm dan suasana staycation influencer Indonesia.">
+Hotel Staycation
+</option>
+
+<option value="Restoran aesthetic modern dengan interior clean, pencahayaan warm, dan suasana casual dinner influencer wanita Indonesia.">
+Restaurant Aesthetic
+</option>
+
+</select>
+
+<!-- VERSI 1 -->
+
+<div class="version">
+
+<h3>[VERSI 1]</h3>
+
+<button onclick="generateBg1()">
+GENERATE VERSI 1
+</button>
+
+<textarea id="bg1"></textarea>
+
+<button class="copy" onclick="copyText('bg1')">
+COPY PROMPT
+</button>
+
+</div>
+
+<!-- VERSI 2 -->
+
+<div class="version">
+
+<h3>[VERSI 2]</h3>
+
+<button onclick="generateBg2()">
+GENERATE VERSI 2
+</button>
+
+<textarea id="bg2"></textarea>
+
+<button class="copy" onclick="copyText('bg2')">
+COPY PROMPT
+</button>
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- UBAH BAJU -->
+<!-- ===================================================== -->
+
+<div class="card">
+
+<h2>3. UBAH BAJU</h2>
+
+<!-- VERSI 1 -->
+
+<div class="version">
+
+<h3>[VERSI 1]</h3>
+
+<button onclick="generateCloth1()">
+GENERATE VERSI 1
+</button>
+
+<textarea id="cloth1"></textarea>
+
+<button class="copy" onclick="copyText('cloth1')">
+COPY PROMPT
+</button>
+
+</div>
+
+<!-- VERSI 2 -->
+
+<div class="version">
+
+<h3>[VERSI 2]</h3>
+
+<button onclick="generateCloth2()">
+GENERATE VERSI 2
+</button>
+
+<textarea id="cloth2"></textarea>
+
+<button class="copy" onclick="copyText('cloth2')">
+COPY PROMPT
+</button>
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- GANTI KARAKTER -->
+<!-- ===================================================== -->
+
+<div class="card">
+
+<h2>4. GANTI KARAKTER</h2>
+
+<div class="version">
+
+<button onclick="generateSwap()">
+GENERATE PROMPT
+</button>
+
+<textarea id="swap"></textarea>
+
+<button class="copy" onclick="copyText('swap')">
+COPY PROMPT
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function generateAvatar1(){
+
+let hijab =
+document.getElementById("avatarHijab").value;
+
+document.getElementById("avatar1").value =
+`Buat foto potret dari paha hingga kepala, seorang wanita ${hijab} seperti di foto referensi 
+gambar, Subjek harus berdiri menghadap ke depan sepenuhnya dan tersenyum ramah ke 
+arah kamera. Tinggi kamera sejajar sempurna dengan ketinggian mata subjek. Sisakan 
+ruang kosong yang cukup di atas kepala dan di sekitar kedua sisi subjek untuk tampilan 
+editorial yang bersih.
+
+Pakaian yang dikenakan adalah kaos polos warna hitam lengan panjang ketat dan celana 
+jeans.
+
+Subjek berada di kamar latar belakang dinding putih bersih, shot on iPhone 13 pro, natural, 
+hyper realistic, clean.
+
+PENTING:
+1. Aktifkan mode konsistensi wajah ketat (strict facial consistency mode).
+2. Prioritaskan fitur wajah dari gambar referensi wajah yang diberikan.
+3. Wajah harus 100% identik dengan foto referensi.
+4. Pertahankan JIKA mengenakan jilbab.
+
+Hasil harus terlihat seperti foto manusia asli, bukan ilustrasi AI, tanpa wajah plastik, tanpa 
+beauty filter, Kulit putih porcelain.`;
+
+}
+
+function generateAvatar2(){
+
+let hijab =
+document.getElementById("avatarHijab").value;
+
+document.getElementById("avatar2").value =
+`Buat foto potret dari paha hingga kepala, seorang wanita ${hijab} seperti di foto referensi 
+gambar, Subjek harus berdiri menghadap ke depan sepenuhnya dan tersenyum ramah ke 
+arah kamera. Pakaian yang dikenakan adalah kaos ketat polos warna hitam lengan panjang 
+dan celana jeans.
+
+Hasil harus terlihat seperti foto manusia asli, bukan ilustrasi AI, tanpa wajah plastik, tanpa 
+beauty filter, Kulit putih porcelain sangat halus.
+
+Subjek berada di kamar latar belakang dinding putih bersih, shot on iphone 13 pro, natural, 
+hyperrealistic, clean.`;
+
+}
+
+function generateBg1(){
+
+let bg =
+document.getElementById("backgroundSelect").value;
+
+document.getElementById("bg1").value =
+`Foto potret dalam ruangan ultra realistis dari wanita yang PERSIS SAMA dari gambar 
+referensi, berdiri dalam posisi dan pose yang PERSIS SAMA, menghadap langsung ke 
+kamera dengan ekspresi wajah yang PERSIS SAMA, postur tubuh yang PERSIS SAMA, 
+proporsi yang PERSIS SAMA, bentuk dan lipatan hijab yang PERSIS SAMA, komposisi 
+bingkai dan pemotongan yang PERSIS SAMA.
+
+Identitas subjek harus tetap 100% identik dengan foto referensi asli. Pertahankan semua 
+fitur wajah, warna kulit, struktur wajah, bentuk mata, hidung, bibir, senyum, penampilan usia,
+dan karakteristik pribadi persis seperti pada gambar sumber. JANGAN mempercantik, 
+menata gaya, atau mengubah orang tersebut.
+
+Hanya ubah latar belakang menjadi ruangan dengan ${bg}
+
+Sesuaikan warna kulit dan eksposur agar menyatu secara alami dengan lingkungan.`;
+
+}
+
+function generateBg2(){
+
+let bg =
+document.getElementById("backgroundSelect").value;
+
+document.getElementById("bg2").value =
+`Ubah lokasi menjadi di ruangan dengan Latar Belakang:
+
+${bg}
+
+Background sederhana dan sedikit blur sehingga fokus utama tetap pada subjek.
+
+Pencahayaan:
+Pencahayaan soft indoor lighting dengan sumber cahaya utama dari depan sedikit ke kiri 
+wajah. Bayangan sangat lembut, tone warna netral-cool, dengan kualitas foto tajam dan 
+aesthetic seperti hasil kamera smartphone iPhone 13 pro.
+
+PASTIKAN:
+- orang yang dihasilkan adalah ORANG YANG SAMA.
+- wajah, identitas, dan karakter personal TIDAK BERUBAH.
+- ekspresi wajah dan pose TETAP SAMA.
+- framing kamera TETAP SAMA.`;
+
+}
+
+function generateCloth1(){
+
+document.getElementById("cloth1").value =
+`Buat gambar baru yang sangat realistis dan natural di mana model dari gambar pertama
+memakai pakaian dari gambar kedua. Sesuaikan lipatan kain, pencahayaan, dan bayangan 
+agar pas dengan postur tubuh model.
+
+ATURAN PENTING:
+1. Aktifkan mode konsistensi wajah ketat (strict facial consistency mode).
+2. Pertahankan identitas subjek secara akurat dan presisi.
+3. Rapikan atau sesuaikan jilbab agar terlihat natural dengan pakaian.
+4. Boleh menyesuaikan pencahayaan agar menyatu dengan baik.
+5. Hilangkan teks atau watermark.
+
+Pastikan pakaian baru terlihat:
+- mengikuti bentuk tubuh secara alami
+- mempertahankan tekstur kain dan sifat material yang akurat
+- mempertahankan jahitan, sambungan, lipatan, kerutan, dan ketebalan
+- mempertahankan detail dan warna secara akurat
+- mempertahankan proporsi pakaian yang realistis
+- terlihat seperti dikenakan oleh subjek, bukan ditempel atau mengambang`;
+
+}
+
+function generateCloth2(){
+
+document.getElementById("cloth2").value =
+`Anda adalah AI ahli dalam Virtual Try-On pakaian. Saya memberikan dua gambar: gambar 
+pertama adalah foto model (manusia), dan gambar kedua adalah produk pakaian.
+
+Tugas: Buat gambar baru yang sangat realistis dan natural di mana model dari gambar 
+pertama memakai pakaian dari gambar kedua. Sesuaikan lipatan kain, pencahayaan, dan 
+bayangan agar pas dengan postur tubuh model, jangan merubah detail tubuh model.`;
+
+}
+
+function generateSwap(){
+
+document.getElementById("swap").value =
+`Ganti subjek pada gambar 1 dengan wanita dari gambar 2.
+
+Pertahankan latar belakang asli, detail ruangan, warna dinding, objek, sudut kamera, 
+pembingkaian, komposisi, dan pencahayaan PERSIS sama seperti pada Gambar 1.
+
+Ganti hanya orangnya. Subjek baru harus:
+– Sesuai dengan pose persis Gambar 1.
+– Sesuai dengan perspektif dan jarak kamera yang sama.
+– Beradaptasi secara alami dengan pencahayaan dalam ruangan Gambar 1.
+– Sesuai dengan arah dan intensitas bayangan dari Gambar 1.
+– Sesuaikan warna kulit dan eksposur agar menyatu secara alami dengan lingkungan 
+Gambar 1.
+
+JANGAN memodifikasi:
+– Latar belakang.
+– Pengaturan pencahayaan.
+– Objek ruangan.
+– Nada warna.
+– Pembingkaian kamera.`;
+
+}
+
+function copyText(id){
+
+let copy =
+document.getElementById(id);
+
+copy.select();
+
+navigator.clipboard.writeText(copy.value);
+
+alert("Prompt berhasil di copy!");
+
+}
+
+</script>
+
+</body>
+</html>
